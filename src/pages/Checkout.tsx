@@ -6,9 +6,8 @@ import CartContext from '../store/CartContext';
 const Checkout = () => {
 	const cartCtx = useContext(CartContext);
 
-	const getPoundSign = cartCtx.items[0].price.slice(0, 1);
+	const getPoundSign = cartCtx.items[0]?.price.slice(0, 1) ?? '';
 
-	console.log('get pound sign', getPoundSign);
 	return (
 		<div className="checkout-con">
 			<h1>Checkout</h1>

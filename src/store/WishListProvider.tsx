@@ -9,7 +9,6 @@ const wishReducer = (state: any, action: any) => {
 	if (action.type === 'TOGGLE') {
 		let updatedItem;
 		let existingItem = state.items.find((t: any) => t.name === action.item.name);
-		console.log('exisitng', existingItem);
 		if (existingItem !== undefined) {
 			updatedItem = state.items.filter((t: any) => t.name !== existingItem.name);
 		} else {
