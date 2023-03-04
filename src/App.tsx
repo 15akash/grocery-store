@@ -6,6 +6,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Checkout from './pages/Checkout';
 import HomePage, { ItemData } from './pages/HomePage';
 import CartProvider from './store/CartProvider';
+import WishListProvider from './store/WishListProvider';
 
 function App() {
 	const [showCheckout, setShowCheckout] = useState<boolean>(false);
@@ -20,15 +21,17 @@ function App() {
 
 	return (
 		<CartProvider>
-			<div className="App">
-				<div className="column-1">
-					<Navbar goToHomepage={setShowCheckout} onChange={setSearch} />
-					<div className="main-content">{showCheckout ? <Checkout /> : <HomePage storeData={filteredData} />}</div>
+			<WishListProvider>
+				<div className="App">
+					<div className="column-1">
+						<Navbar goToHomepage={setShowCheckout} onChange={setSearch} />
+						<div className="main-content">{showCheckout ? <Checkout /> : <HomePage storeData={filteredData} />}</div>
+					</div>
+					<div className="column-2">
+						<Sidebar showCart={setShowCheckout} />
+					</div>
 				</div>
-				<div className="column-2">
-					<Sidebar showCart={setShowCheckout} />
-				</div>
-			</div>
+			</WishListProvider>
 		</CartProvider>
 	);
 }

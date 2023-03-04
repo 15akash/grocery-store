@@ -1,18 +1,23 @@
 import { useContext } from 'react';
 import { AddToCartIcon } from '../../assets/AddToCartIcon';
 import { AddToFavIcon } from '../../assets/AddToFavIcon';
+import { FavIcon } from '../../assets/FavIcon';
 import { ItemData } from '../../pages/HomePage';
 import CartContext from '../../store/CartContext';
+import WishListContext from '../../store/WishListContext';
 import './FoodItem.scss';
 
 const FoodItem = (props: ItemData) => {
 	const cartCtx = useContext(CartContext);
+	const wishListCtx = useContext(WishListContext);
 
 	const cartItemAddHandler = (item: ItemData) => {
 		cartCtx.addItem({ ...item, unit: 1 });
 	};
 
-	const addingToWishList = (item: string) => {};
+	const addingToWishList = (item: ItemData) => {
+		wishListCtx.toggleItem({ ...item });
+	};
 
 	return (
 		<div className="food-item-con">
@@ -32,9 +37,15 @@ const FoodItem = (props: ItemData) => {
 							<button onClick={() => cartItemAddHandler(props)}>
 								<AddToCartIcon />
 							</button>
-							<button onClick={() => addingToWishList(props.name)}>
-								<AddToFavIcon />
-							</button>
+							{wishListCtx.items.find((t: ItemData) => t.name === props.name) ? (
+								<button onClick={() => addingToWishList(props)}>
+									<FavIcon />
+								</button>
+							) : (
+								<button style={{ width: '32px', height: '29px' }} onClick={() => addingToWishList(props)}>
+									<AddToFavIcon />
+								</button>
+							)}
 						</div>
 					</div>
 				</div>
