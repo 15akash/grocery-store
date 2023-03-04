@@ -12,15 +12,15 @@ const Checkout = () => {
 			<div className="amount-column">
 				<div className="amount-discount-column">
 					<h4>SubTotal</h4>
-					<p>{`Pound ${cartCtx.totalAmount}`}</p>
+					<p>{`Pound ${cartCtx.totalAmount.toFixed(2)}`}</p>
 				</div>
 				<div className="amount-discount-column">
 					<h4>Discount</h4>
-					<p>{`Pound ${cartCtx.totalDiscount}`}</p>
+					<p>{`Pound ${cartCtx.totalDiscount.toFixed(2)}`}</p>
 				</div>
 				<div className="amount-discount-column">
 					<h4>Total</h4>
-					<p>{`Pound ${cartCtx.totalAmount - cartCtx.totalDiscount}`}</p>
+					<p>{`Pound ${(cartCtx.totalAmount - cartCtx.totalDiscount).toFixed(2)}`}</p>
 					<button className="checkout-btn">Checkout</button>
 				</div>
 			</div>

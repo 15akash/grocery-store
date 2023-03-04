@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import Category, { CategoryProps } from '../components/Category/Category';
 import FoodItem from '../components/FoodItem/FoodItem';
 import './Homepage.scss';
@@ -14,19 +12,13 @@ export interface ItemData {
 	type: string;
 }
 
-const HomePage = () => {
+const HomePage = ({ storeData }: any) => {
 	const categories = [
 		{ id: 'all', text: 'All Items' },
 		{ id: 'drinks', text: 'Drinks' },
 		{ id: 'fruit', text: 'Fruit' },
 		{ id: 'bakery', text: 'Bakery' }
 	];
-
-	const [storeData, setStoreData] = useState<ItemData[]>([]);
-
-	useEffect(() => {
-		axios.get('https://uxdlyqjm9i.execute-api.eu-west-1.amazonaws.com/s?category=all').then(t => setStoreData([...t.data]));
-	}, []);
 
 	return (
 		<div className="homepage-con">
@@ -37,7 +29,7 @@ const HomePage = () => {
 			</div>
 			<h1>Trending Items</h1>
 			<div className="items-column">
-				{storeData.map((t, index) => (
+				{storeData.map((t: ItemData, index: number) => (
 					<FoodItem key={index} available={t.available} type={t.type} description={t.description} img={t.img} name={t.name} price={t.price} rating={t.rating} />
 				))}
 			</div>

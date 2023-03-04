@@ -1,6 +1,16 @@
 import React from 'react';
 
-const CartContext = React.createContext({
+interface CartContextInterface {
+	items: any;
+	totalAmount: number;
+	addItem: any;
+	removeItem: any;
+	cancelItem: any;
+	totalUnits: number;
+	totalDiscount: number;
+}
+
+const CartContext = React.createContext<CartContextInterface>({
 	items: [],
 	totalAmount: 0,
 	addItem: (item: any) => {},
