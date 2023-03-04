@@ -1,9 +1,19 @@
+import { useContext } from 'react';
 import { AddToCartIcon } from '../../assets/AddToCartIcon';
 import { AddToFavIcon } from '../../assets/AddToFavIcon';
 import { ItemData } from '../../pages/HomePage';
+import CartContext from '../../store/CartContext';
 import './FoodItem.scss';
 
 const FoodItem = (props: ItemData) => {
+	const cartCtx = useContext(CartContext);
+
+	const cartItemAddHandler = (item: ItemData) => {
+		cartCtx.addItem({ ...item, unit: 1 });
+	};
+
+	const addingToWishList = (item: string) => {};
+
 	return (
 		<div className="food-item-con">
 			<img src={props.img} alt={props.name} />
@@ -19,8 +29,12 @@ const FoodItem = (props: ItemData) => {
 					<div className="icons-price-column">
 						<h2>{props.price}</h2>
 						<div className="icons-column">
-							<AddToCartIcon />
-							<AddToFavIcon />
+							<button onClick={() => cartItemAddHandler(props)}>
+								<AddToCartIcon />
+							</button>
+							<button onClick={() => addingToWishList(props.name)}>
+								<AddToFavIcon />
+							</button>
 						</div>
 					</div>
 				</div>

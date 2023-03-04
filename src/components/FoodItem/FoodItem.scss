@@ -13,6 +13,12 @@
         object-fit: contain;
     }
 
+    button {
+        padding: 0;
+        background: white;
+        border: none;
+    }
+
     .right-column {
         display: flex;
         flex-direction: column;
