@@ -24,9 +24,9 @@ const HomePage = ({ storeData }: any) => {
 	];
 
 	const filteredData = useMemo(() => {
-		if (showCategories === 'all') {
+		if (showCategories === 'all' || !showCategories) {
 			return storeData;
-		} else {
+		} else if (showCategories) {
 			return storeData.filter((t: ItemData) => t.type === showCategories);
 		}
 	}, [showCategories, storeData]);

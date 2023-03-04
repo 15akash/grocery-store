@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import './App.scss';
 import Navbar from './components/Navbar/Navbar';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -17,7 +17,7 @@ function App() {
 		axios.get('https://uxdlyqjm9i.execute-api.eu-west-1.amazonaws.com/s?category=all').then(t => setStoreData([...t.data]));
 	}, []);
 
-	const filteredData = storeData.filter(item => item.name.toLowerCase().includes(search.toLowerCase()));
+	const filteredData = useMemo(() => storeData.filter(item => item.name.toLowerCase().includes(search.toLowerCase())), [search, storeData]);
 
 	return (
 		<CartProvider>
