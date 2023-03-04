@@ -1,12 +1,12 @@
 import React from 'react';
 import { ItemData } from '../pages/HomePage';
 
-interface WishListContext {
+interface IWishListContext {
 	items: ItemData[];
 	toggleItem: any;
 }
 
-const WishListContext = React.createContext({
+const WishListContext = React.createContext<IWishListContext>({
 	items: [],
 	toggleItem: (item: any) => {}
 });
