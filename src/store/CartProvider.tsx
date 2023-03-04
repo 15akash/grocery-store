@@ -1,4 +1,4 @@
-import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useMemo, useReducer } from 'react';
+import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useReducer } from 'react';
 import { CartItems } from '../components/Checkout-Items/CheckoutItems';
 import CartContext from './CartContext';
 
