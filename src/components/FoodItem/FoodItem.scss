@@ -1,0 +1,57 @@
+.food-item-con {
+    border: 1px solid rgba(190, 190, 190, 0.5) !important;
+    box-shadow: 5px 5px 20px rgba(181, 181, 181, 0.2);
+    border-radius: 30px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 30px 25px;
+    column-gap: 25px;
+
+    img {
+        width: 300px;
+        height: 300px;
+        object-fit: contain;
+    }
+
+    .right-column {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        h2 {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 22px;
+            color: #474747;
+        }
+
+        .desc-column { 
+    
+            p {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 18px;
+                color: #474747;
+                margin-top: 17px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: -webkit-box;
+                -webkit-line-clamp: 8; /* number of lines to show */
+                        line-clamp: 8; 
+                -webkit-box-orient: vertical;
+            }  
+        }
+        
+        .add-cart-column {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .icons-column {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    }
+}

@@ -7,7 +7,7 @@ const Sidebar = () => {
 	return (
 		<div className="sidebar-con">
 			<div className="icon-con">
-				<HeartIcon />
+				<HeartIcon fill="#E86F6F" stroke="#FF5E5E" />
 				<div className="badge-con fav-icon">
 					<p>8</p>
 				</div>

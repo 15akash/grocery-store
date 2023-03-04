@@ -1,0 +1,17 @@
+.homepage-con {
+
+    .category-column {
+        display: flex;
+        gap: 22px;
+    }
+
+    h1 {
+        margin: 41px 0 51px 0;
+    }
+
+    .items-column {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 85px;
+    }
+}
