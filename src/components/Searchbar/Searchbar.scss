@@ -1,0 +1,32 @@
+.searchbar-con {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid rgba(190, 190, 190, 0.5) !important;
+    box-shadow: 5px 5px 20px rgba(181, 181, 181, 0.2);
+    border-radius: 30px;
+    flex: 1;
+    
+    input {
+        border-bottom-left-radius: 30px;
+        border-top-left-radius: 30px;
+        border: none;
+        padding: 25px;
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 27px;
+        color: #949494;
+        outline: none;
+        width: 100%;
+    }
+
+    .search-icon {
+        padding: 25px 25px 25px 0;
+    }
+
+    ::-webkit-input-placeholder {
+        font-weight: 300;
+        font-size: 24px;
+        line-height: 27px;
+        color: #949494;
+    }
+}

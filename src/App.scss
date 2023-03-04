@@ -1,0 +1,12 @@
+.App {
+    display: flex;
+    padding: 102px 124px;
+
+    .column-1 {
+        flex: 1;
+    }
+
+    .column-2 {
+        width: 30%;
+    }
+}
