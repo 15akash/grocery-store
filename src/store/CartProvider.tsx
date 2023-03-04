@@ -89,7 +89,7 @@ const cartReducer = (state: StateObject, action: any) => {
 	}
 
 	if (action.type === 'CANCEL') {
-		let updatedItems = state.items.filter((item: { name: any }) => item.name !== action.item.name);
+		let updatedItems = state.items.filter((item: { name: string }) => item.name !== action.item.name);
 		const trimPrice = action.item.price.slice(1, action.item.price.length);
 		const priceToDeduct = +trimPrice;
 		const updatedAmount = state.totalAmount - action.item.unit * priceToDeduct;
