@@ -13,10 +13,15 @@ const FoodItem = (props: ItemData) => {
 					<p>{props.description}</p>
 				</div>
 				<div className="add-cart-column">
-					<h2>{props.price}</h2>
-					<div className="icons-column">
-						<AddToCartIcon />
-						<AddToFavIcon />
+					<div className={props.available >= 10 ? 'quantity-con more-than-5' : 'quantity-con less-than-5'}>
+						<p>{props.available >= 10 ? 'Available' : `Only ${props.available} left`}</p>
+					</div>
+					<div className="icons-price-column">
+						<h2>{props.price}</h2>
+						<div className="icons-column">
+							<AddToCartIcon />
+							<AddToFavIcon />
+						</div>
 					</div>
 				</div>
 			</div>
