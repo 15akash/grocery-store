@@ -16,11 +16,11 @@ const Checkout = () => {
 				</div>
 				<div className="amount-discount-column">
 					<h4>Discount</h4>
-					<p>{`Pound 0`}</p>
+					<p>{`Pound ${cartCtx.totalDiscount}`}</p>
 				</div>
 				<div className="amount-discount-column">
 					<h4>Total</h4>
-					<p>{`Pound ${cartCtx.totalAmount}`}</p>
+					<p>{`Pound ${cartCtx.totalAmount - cartCtx.totalDiscount}`}</p>
 					<button className="checkout-btn">Checkout</button>
 				</div>
 			</div>

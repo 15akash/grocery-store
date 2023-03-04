@@ -6,7 +6,7 @@ import { ItemData } from '../../pages/HomePage';
 import CartContext from '../../store/CartContext';
 import './CheckoutItem.scss';
 
-interface CartItems extends ItemData {
+export interface CartItems extends ItemData {
 	unit: number;
 }
 
