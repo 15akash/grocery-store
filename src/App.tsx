@@ -23,13 +23,11 @@ function App() {
 		<CartProvider>
 			<WishListProvider>
 				<div className="App">
-					<div className="column-1">
+					<div className="header">
 						<Navbar goToHomepage={setShowCheckout} onChange={setSearch} />
-						<div className="main-content">{showCheckout ? <Checkout /> : <HomePage storeData={filteredData} />}</div>
-					</div>
-					<div className="column-2">
 						<Sidebar showCart={setShowCheckout} />
 					</div>
+					<div className="main-content">{showCheckout ? <Checkout /> : <HomePage storeData={filteredData} />}</div>
 				</div>
 			</WishListProvider>
 		</CartProvider>

@@ -3,8 +3,16 @@
     align-items: center;
     padding-right: 20px;
     gap: 35px;
+    width: 100%;
 
     .sidebar-column {
         height: 85px;
+    }
+}
+
+
+@media only screen and (max-width: 550px) {
+    .navbar-con {
+        flex-direction: column;
     }
 }

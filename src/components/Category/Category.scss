@@ -5,8 +5,15 @@
     padding: 15px 50px;
     display: flex;
     cursor: pointer;
+    justify-content: center;
 
     h5 {
         color: #474747;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .category-con {
+        padding: 10px 20px !important;
     }
 }

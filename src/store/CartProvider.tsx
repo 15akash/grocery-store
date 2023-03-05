@@ -16,6 +16,17 @@ const defaultCartState = {
 	totalDiscount: 0
 };
 
+const coffeDetails = {
+	available: 100,
+	description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry',
+	img: 'https://py-shopping-cart.s3.eu-west-2.amazonaws.com/coffee.jpeg',
+	name: 'Coffee',
+	price: '£0.65',
+	rating: 3.5,
+	type: 'drinks',
+	unit: 1
+};
+
 const cartReducer = (state: StateObject, action: any) => {
 	if (action.type === 'ADD') {
 		let discount: number = 0;
@@ -28,9 +39,13 @@ const cartReducer = (state: StateObject, action: any) => {
 				}
 			}
 		}
+
 		const trimPrice = action.item.price.slice(1, action.item.price.length);
 		const priceToAdd = +trimPrice;
-		const updatedTotalAmount = state.totalAmount + priceToAdd * action.item.unit;
+		const discountedItemPrice = action.discount?.price.slice(1, action.discount?.price.length);
+		const discountedPriceToAdd = +discountedItemPrice;
+
+		const updatedTotalAmount = state.totalAmount + priceToAdd * action.item.unit + (!!discountedPriceToAdd ? discountedPriceToAdd : 0);
 		const existingCartItemIndex = state.items.findIndex((item: { name: string }) => item.name === action.item.name);
 		const existingCartItem = state.items[existingCartItemIndex];
 		let updatedItems;
@@ -46,15 +61,25 @@ const cartReducer = (state: StateObject, action: any) => {
 			updatedItems = state.items.concat(action.item);
 		}
 
+		if (action.discount) {
+			const existingItemToOffer = updatedItems.findIndex((item: any) => item.name === action.discount.name);
+			if (existingItemToOffer > 0) {
+				const itemToUpdate = { ...updatedItems[existingItemToOffer], unit: updatedItems[existingItemToOffer].unit + action.discount.unit };
+				updatedItems = [...updatedItems];
+				updatedItems[existingItemToOffer] = itemToUpdate;
+			} else updatedItems = [...updatedItems, action.discount];
+		}
+
 		return {
 			items: updatedItems,
 			totalAmount: updatedTotalAmount,
-			totalUnits: state.totalUnits + 1,
-			totalDiscount: state.totalDiscount + discount
+			totalUnits: state.totalUnits + 1 + (!!action.discount?.unit ? 1 : 0),
+			totalDiscount: state.totalDiscount + discount + (!!discountedPriceToAdd ? discountedPriceToAdd : 0)
 		};
 	}
 	if (action.type === 'REMOVE') {
 		let discount: number = 0;
+
 		if (action.name === 'Coca-Cola' || action.name === 'Croissants') {
 			if (action.name === 'Coca-Cola') {
 				const findCocaCola = state.items.find((t: CartItems) => t.name === 'Coca-Cola');
@@ -65,6 +90,15 @@ const cartReducer = (state: StateObject, action: any) => {
 					}
 				}
 			}
+			// if (action.name === 'Croissants') {
+			// 	const findCroissants = state.items.find((t: CartItems) => t.name === 'Croissants');
+			// 	if (findCroissants !== undefined) {
+			// 		const unitsToGetDiscountOnCroissants = findCroissants.unit / 3;
+			// 		if (action.name === 'Croissants' && Number.isInteger(unitsToGetDiscountOnCroissants)) {
+			// 			discount = 0.65;
+			// 		}
+			// 	}
+			// }
 		}
 		const existingCartItemIndex = state.items.findIndex((item: { name: any }) => item.name === action.name);
 		const existingItem = state.items[existingCartItemIndex];
@@ -80,11 +114,24 @@ const cartReducer = (state: StateObject, action: any) => {
 			updatedItems[existingCartItemIndex] = updatedItem;
 		}
 
+		if (action.discount) {
+			console.log('in action', action.discount);
+			const existingDiscountItemIndex = state.items.findIndex((item: { name: any }) => item.name === 'Coffee');
+			const existingDiscountItem = state.items[existingDiscountItemIndex];
+			if (existingDiscountItem.unit === 1) {
+				updatedItems = state.items.filter((item: { name: any }) => item.name !== action.discount.name);
+			} else {
+				const updatedItem = { ...existingDiscountItem, unit: existingDiscountItem.unit - 1 };
+				updatedItems = [...updatedItems];
+				updatedItems[existingDiscountItem] = updatedItem;
+			}
+		}
+
 		return {
 			items: updatedItems,
 			totalAmount: updatedTotalAmount,
-			totalUnits: state.totalUnits - 1,
-			totalDiscount: state.totalDiscount - discount
+			totalUnits: state.totalUnits - 1 - (!!action.discount?.unit ? 1 : 0),
+			totalDiscount: state.totalDiscount - discount - (!!action.discount?.unit ? 0.65 : 0)
 		};
 	}
 
@@ -109,11 +156,17 @@ const CartProvider = (props: { children: string | number | boolean | ReactElemen
 	const [cartState, dispatchCartAction] = useReducer(cartReducer, defaultCartState);
 
 	const addItemToCartHandler = (item: any) => {
-		dispatchCartAction({ type: 'ADD', item: item });
+		const findCroissants = cartContext.items.find((t: any) => t.name === 'Croissants');
+		if (Number.isInteger((findCroissants?.unit + 1) / 3)) {
+			dispatchCartAction({ type: 'ADD', item: item, discount: coffeDetails });
+		} else dispatchCartAction({ type: 'ADD', item: item });
 	};
 
 	const removeItemFromCartHandler = (name: any) => {
-		dispatchCartAction({ type: 'REMOVE', name: name });
+		const findCroissants = cartContext.items.find((t: any) => t.name === 'Croissants');
+		if (Number.isInteger(findCroissants?.unit / 3)) {
+			dispatchCartAction({ type: 'REMOVE', name: name, discount: coffeDetails });
+		} else dispatchCartAction({ type: 'REMOVE', name: name });
 	};
 
 	const cancelItemFromCartHandler = (item: any) => {

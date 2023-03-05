@@ -114,6 +114,12 @@
     }
   }
 
+  @media only screen and (max-width: 960px) {
+    .food-item-con {
+        grid-template-columns: 0.3fr 0.7fr !important;
+    }
+  }
+
   @media only screen and (max-width: 850px) {
     img {
         width: 150px !important;

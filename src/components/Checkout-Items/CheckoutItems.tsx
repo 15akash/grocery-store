@@ -38,23 +38,23 @@ const CheckoutItems = () => {
 							</div>
 						</div>
 						<div className="product-price-con">
-							<div>
-								<div className="plus-minus-con">
-									<button onClick={() => removeItemHandler(item.name)}>
-										<MinusIcon />
-									</button>
-									<h4>{item.unit}</h4>
-									<button onClick={() => addItemHandler(item)}>
-										<PlusIcon />
-									</button>
-								</div>
-								<div className="price-con">
-									<p>{item.price}</p>
-									<button onClick={() => cancelItemHandler(item)}>
-										<CrossIcon />
-									</button>
-								</div>
+							{/* <div> */}
+							<div className="plus-minus-con">
+								<button onClick={() => removeItemHandler(item.name)}>
+									<MinusIcon />
+								</button>
+								<h4>{item.unit}</h4>
+								<button onClick={() => addItemHandler(item)}>
+									<PlusIcon />
+								</button>
 							</div>
+							<div className="price-con">
+								<p>{item.price}</p>
+								<button onClick={() => cancelItemHandler(item)}>
+									<CrossIcon />
+								</button>
+							</div>
+							{/* </div> */}
 						</div>
 					</div>
 				);
