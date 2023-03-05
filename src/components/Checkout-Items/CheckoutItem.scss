@@ -102,3 +102,18 @@
         }
     }
 }
+
+
+@media only screen and (max-width: 550px) {
+    .single-item-con {
+        padding: 15px !important;
+
+        h4 {
+            margin: 0 5px !important;
+        }
+
+        .product-price-con .price-con p {
+            margin-right: 10px !important;
+        }
+    }
+}
