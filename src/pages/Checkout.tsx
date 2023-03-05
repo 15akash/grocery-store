@@ -24,8 +24,9 @@ const Checkout = () => {
 				<div className="amount-discount-column">
 					<h4>Total</h4>
 					<p>{`${getPoundSign} ${(cartCtx.totalAmount - cartCtx.totalDiscount).toFixed(2)}`}</p>
-					<button className="checkout-btn">Checkout</button>
+					<button className="checkout-btn desktop-view">Checkout</button>
 				</div>
+				<button className="checkout-btn mobile-view">Checkout</button>
 			</div>
 		</div>
 	);

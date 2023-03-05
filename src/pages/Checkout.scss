@@ -11,26 +11,32 @@
         flex-direction: column;
         margin-top: 45px;
 
+        .mobile-view {
+            display: none;
+        }
+
+        .checkout-btn {
+            background: #7FD287;
+            border-radius: 8px;
+            color: white;
+            padding: 16px 58px;
+            border: none;
+            width: 190px;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 18px;
+            letter-spacing: -0.02em;
+            color: #FFFFFF;
+        }
         .amount-discount-column {
             display: grid;
             align-items: center;
             grid-template-columns: 0.5fr 0.25fr 0.25fr;
             border-top: 1px solid #E6E6EB;
             padding: 22px 0;
+
+          
         
-            .checkout-btn {
-                background: #7FD287;
-                border-radius: 8px;
-                color: white;
-                padding: 16px 58px;
-                border: none;
-                width: 190px;
-                font-weight: 700;
-                font-size: 16px;
-                line-height: 18px;
-                letter-spacing: -0.02em;
-                color: #FFFFFF;
-            }
 
             h4 {
                 font-weight: 700;
@@ -51,5 +57,22 @@
 
 
 }
+}
 
+@media only screen and (max-width: 900px) {
+
+    .mobile-view {
+        display: block !important;
+        margin: auto;
+    }
+
+    .amount-discount-column {
+        grid-template-columns: 1fr 1fr !important;
+
+      
+
+        .desktop-view {
+            display: none !important;
+        }
+    }
 }
