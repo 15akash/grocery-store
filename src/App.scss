@@ -23,5 +23,16 @@
     .main-content {
         width: 100% !important;
     }
+}
 
+@media only screen and (max-width: 550px) {
+    .App{
+        padding: 30px 15px !important;
+
+        .header {
+            width: 90%;
+            margin: auto;
+            gap: 30px !important;
+        }
+    }
 }
