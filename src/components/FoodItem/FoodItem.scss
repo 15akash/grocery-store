@@ -93,3 +93,43 @@
         }
     }
 }
+
+@media only screen and (max-width: 1200px) {
+    img {
+        width: 200px !important;
+        height: 200px !important;
+    }
+
+    .desc-column {
+        margin-bottom: 20px;
+
+        p {
+            -webkit-line-clamp: 5 !important; /* number of lines to show */
+            line-clamp: 5 !important; 
+        } 
+    }
+
+    .quantity-con {
+        margin-bottom: 20px;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    img {
+        width: 150px !important;
+        height: 150px !important;
+    }
+
+    .desc-column {
+        margin-bottom: 20px;
+
+        p {
+            -webkit-line-clamp: 3 !important; /* number of lines to show */
+            line-clamp: 3 !important; 
+        } 
+    }
+
+    .quantity-con {
+        margin-bottom: 20px;
+    }
+  }
